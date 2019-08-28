@@ -1,7 +1,120 @@
 <template>
   <div class="home">
-    <router-link to="/english">英语</router-link>
-    <router-link to="/computer">计算机</router-link>
+    <div class="score" v-show="submit">{{ score }} 分</div>
+    <div class="dx">
+      <dl v-for="(item, i) in dxlist" :key="i">
+        <div class="question">
+          <div class="no">{{ i + 1 }}.</div>
+          <div
+            class="text"
+            v-html="item.question.replace(/\n/g, '<br/>')"
+          ></div>
+          <span
+            v-show="submit"
+            class="answer"
+            :style="{
+              color: item.xx === item.answer ? 'green' : 'red'
+            }"
+          >
+            {{ item.answer }}
+          </span>
+        </div>
+        <div class="options">
+          <el-radio-group v-model="item.xx">
+            <el-radio
+              v-for="(jtem, j) in item.options"
+              :key="jtem"
+              :label="A_Z[j]"
+              >{{ A_Z[j] }}.{{ jtem }}</el-radio
+            >
+          </el-radio-group>
+        </div>
+      </dl>
+    </div>
+    <div class="wx">
+      <dl v-for="(item, i) in wxlist" :key="i">
+        <div class="wz">
+          <div class="no">{{ i + 1 + dxlist.length }}.</div>
+          <div class="text" v-html="item.text.replace(/\n/g, '<br/>')"></div>
+        </div>
+        <div class="questions">
+          <div
+            class="question"
+            v-for="(question, j) in item.questions"
+            :key="`question${i}-${j}`"
+          >
+            <div class="no">{{ j + 1 }}.</div>
+            <div class="options">
+              <el-radio-group v-model="question.xx">
+                <el-radio
+                  v-for="(jtem, k) in question.options"
+                  :key="jtem"
+                  :label="A_Z[k]"
+                  >{{ A_Z[k] }}.{{ jtem }}</el-radio
+                >
+              </el-radio-group>
+            </div>
+            <span
+              v-show="submit"
+              class="answer"
+              :style="{
+                color: question.xx === question.answer ? 'green' : 'red'
+              }"
+            >
+              {{ question.answer }}
+            </span>
+          </div>
+        </div>
+      </dl>
+    </div>
+    <div class="yd">
+      <dl v-for="(item, i) in ydlist" :key="i">
+        <div class="wz">
+          <div class="no">{{ i + 1 + dxlist.length + wxlist.length }}.</div>
+          <div class="text" v-html="item.text.replace(/\n/g, '<br/>')"></div>
+        </div>
+        <div class="questions">
+          <dl
+            v-for="(question, j) in item.questions"
+            :key="`question${i}-${j}`"
+          >
+            <div class="question">
+              <div class="no">{{ j + 1 }}.</div>
+              <div
+                class="text"
+                v-html="question.question.replace(/\n/g, '<br/>')"
+              ></div>
+              <span
+                v-show="submit"
+                class="answer"
+                :style="{
+                  color: question.xx === question.answer ? 'green' : 'red'
+                }"
+              >
+                {{ question.answer }}
+              </span>
+            </div>
+            <div class="options">
+              <el-radio-group v-model="question.xx">
+                <el-radio
+                  v-for="(jtem, j) in question.options"
+                  :key="jtem"
+                  :label="A_Z[j]"
+                >
+                  {{ A_Z[j] }}.{{ jtem }}
+                </el-radio>
+              </el-radio-group>
+            </div>
+          </dl>
+        </div>
+      </dl>
+    </div>
+    <div class="btns-bg"></div>
+    <div class="btns">
+      <el-button type="primary" @click="submitFn">提交</el-button>
+      <el-button type="primary" @click="reset">重来</el-button>
+    </div>
+    <el-backtop></el-backtop>
   </div>
 </template>
 
@@ -10,7 +123,7 @@ import DanXuan from "../data/english/DanXuan";
 import YueDu from "../data/english/YueDu";
 import WanXing from "../data/english/WanXing";
 export default {
-  name: "home",
+  name: "english",
   data() {
     return {
       dxlist: [],
