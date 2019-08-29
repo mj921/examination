@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <router-link to="/english">
+    <router-link to="/english-mobile">
       <el-tag type="primary">英语</el-tag>
     </router-link>
-    <router-link to="/computer">
+    <router-link to="/computer-mobile">
       <el-tag type="primary">计算机</el-tag>
     </router-link>
   </div>

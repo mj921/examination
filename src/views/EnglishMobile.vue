@@ -1,6 +1,14 @@
 <template>
   <div class="home">
+    <van-nav-bar
+      title="英语"
+      left-arrow
+      @click-left="$router.push('/')"
+      fixed
+      style="border-bottom: 1px solid #efefef"
+    />
     <div class="score" v-show="submit">{{ score }} 分</div>
+    <div style="width: 100%;height: 50px;"></div>
     <div class="dx">
       <dl v-for="(item, i) in dxlist" :key="i">
         <div class="question">
@@ -20,14 +28,14 @@
           </span>
         </div>
         <div class="options">
-          <el-radio-group v-model="item.xx">
-            <el-radio
+          <van-radio-group v-model="item.xx">
+            <van-radio
               v-for="(jtem, j) in item.options"
               :key="jtem"
-              :label="A_Z[j]"
-              >{{ A_Z[j] }}.{{ jtem }}</el-radio
+              :name="A_Z[j]"
+              >{{ A_Z[j] }}.{{ jtem }}</van-radio
             >
-          </el-radio-group>
+          </van-radio-group>
         </div>
       </dl>
     </div>
@@ -45,14 +53,14 @@
           >
             <div class="no">{{ j + 1 }}.</div>
             <div class="options">
-              <el-radio-group v-model="question.xx">
-                <el-radio
+              <van-radio-group v-model="question.xx">
+                <van-radio
                   v-for="(jtem, k) in question.options"
                   :key="jtem"
-                  :label="A_Z[k]"
-                  >{{ A_Z[k] }}.{{ jtem }}</el-radio
+                  :name="A_Z[k]"
+                  >{{ A_Z[k] }}.{{ jtem }}</van-radio
                 >
-              </el-radio-group>
+              </van-radio-group>
             </div>
             <span
               v-show="submit"
@@ -95,26 +103,25 @@
               </span>
             </div>
             <div class="options">
-              <el-radio-group v-model="question.xx">
-                <el-radio
+              <van-radio-group v-model="question.xx">
+                <van-radio
                   v-for="(jtem, j) in question.options"
                   :key="jtem"
-                  :label="A_Z[j]"
+                  :name="A_Z[j]"
                 >
                   {{ A_Z[j] }}.{{ jtem }}
-                </el-radio>
-              </el-radio-group>
+                </van-radio>
+              </van-radio-group>
             </div>
           </dl>
         </div>
       </dl>
     </div>
-    <div class="btns-bg"></div>
-    <div class="btns">
-      <el-button type="primary" @click="submitFn">提交</el-button>
-      <el-button type="primary" @click="reset">重来</el-button>
-    </div>
-    <el-backtop></el-backtop>
+    <div style="height: 50px;widht: 100%;"></div>
+    <van-goods-action>
+      <van-goods-action-button type="info" @click="submitFn" text="提交" />
+      <van-goods-action-button type="danger" @click="reset" text="重来" />
+    </van-goods-action>
   </div>
 </template>
 
@@ -131,7 +138,8 @@ export default {
       ydlist: [],
       A_Z: ["A", "B", "C", "D", "E", "F"],
       submit: false,
-      score: 0
+      score: 0,
+      meta: null
     };
   },
   methods: {
@@ -200,13 +208,24 @@ export default {
     }
   },
   mounted() {
+    this.m = document.createElement("meta");
+    this.m.name = "viewport";
+    this.m.content =
+      "user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover";
+    document.getElementsByTagName("head")[0].appendChild(this.m);
     const w =
       window.innerWidth ||
       document.body.clientWidth ||
       document.documentElement.clientWidth;
-    if (w < 750) {
-      this.$router.push("/english-mobile");
+    let p = w / 750;
+    if (p > 1) {
+      this.router.push("/english");
     }
+    p = p > 1 ? 1 : p < 0.427 ? 0.427 : p;
+    document.getElementsByTagName("html")[0].style.fontSize = p * 100 + "px";
+  },
+  beforeDestroy() {
+    document.getElementsByTagName("head")[0].removeChild(this.m);
   },
   created() {
     this.getDanXuan();
@@ -217,125 +236,136 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
-  width: 1200px;
+  width: 7.5rem;
   margin: 0 auto;
   text-align: left;
   .score {
     z-index: 9;
     position: fixed;
-    font-size: 36px;
-    line-height: 60px;
+    font-size: 0.64rem;
+    line-height: 0.8rem;
     color: red;
-    left: 50%;
-    margin-left: 500px;
+    right: 0.1rem;
+  }
+  .question .text {
+    font-weight: bold;
+  }
+  .van-radio {
+    font-size: 0.32rem;
+    margin-bottom: 0.1rem;
   }
   .dx {
     dl {
-      margin-bottom: 20px;
+      margin-bottom: 0.4rem;
       .question {
-        font-size: 16px;
-        line-height: 20px;
-        margin-bottom: 10px;
+        font-size: 0.32rem;
+        line-height: 0.4rem;
+        margin-bottom: 0.2rem;
         overflow: hidden;
         position: relative;
         .no {
           float: left;
           vertical-align: top;
-          width: 40px;
-          padding-right: 5px;
+          width: 0.8rem;
+          padding-right: 0.1rem;
           text-align: right;
         }
         .text {
           float: left;
-          max-width: 1145px;
+          max-width: 6.5rem;
         }
       }
       .options {
-        padding-left: 35px;
+        padding-left: 0.7rem;
+        padding-right: 0.1rem;
       }
     }
   }
   .wx {
     .wz {
-      font-size: 16px;
-      line-height: 20px;
-      margin-bottom: 10px;
+      font-size: 0.32rem;
+      line-height: 0.4rem;
+      margin-bottom: 0.2rem;
       overflow: hidden;
       .no {
         float: left;
         vertical-align: top;
-        width: 40px;
-        padding-right: 5px;
+        width: 0.8rem;
+        padding-right: 0.1rem;
         text-align: right;
         height: 100%;
       }
       .text {
         float: left;
-        max-width: 1145px;
+        max-width: 6.5rem;
       }
     }
     .question {
       overflow: hidden;
-      padding-left: 35px;
-      margin-bottom: 10px;
+      padding-left: 0.7rem;
+      margin-bottom: 0.1rem;
+      font-size: 0.32rem;
       position: relative;
       .no {
         float: left;
         vertical-align: top;
-        width: 25px;
-        padding-right: 5px;
+        width: 0.5rem;
+        padding-right: 0.1rem;
         text-align: right;
         height: 100%;
       }
       .options {
         float: left;
-        max-width: 1125px;
+        max-width: 6rem;
+        padding-right: 0.1rem;
       }
     }
   }
   .yd {
     .wz {
-      font-size: 16px;
-      line-height: 20px;
-      margin-bottom: 10px;
+      font-size: 0.32rem;
+      line-height: 0.4rem;
+      margin-bottom: 0.2rem;
       overflow: hidden;
       .no {
         float: left;
         vertical-align: top;
-        width: 30px;
-        padding-right: 5px;
+        width: 0.6rem;
+        padding-right: 0.1rem;
         text-align: right;
         height: 100%;
       }
       .text {
         float: left;
-        max-width: 1145px;
+        max-width: 6.5rem;
       }
     }
     .question {
       overflow: hidden;
-      padding-left: 35px;
-      margin-bottom: 10px;
+      padding-left: 0.7rem;
+      margin-bottom: 0.2rem;
       position: relative;
+      font-size: 0.32rem;
       .no {
         float: left;
         vertical-align: top;
-        width: 15px;
-        padding-right: 5px;
+        width: 0.3rem;
+        padding-right: 0.1rem;
         text-align: right;
         height: 100%;
       }
       .text {
         float: left;
-        max-width: 1125px;
+        max-width: 6rem;
       }
     }
     .options {
-      padding-left: 50px;
+      padding-left: 1rem;
+      padding-right: 0.1rem;
     }
   }
   .btns-bg {
-    height: 50px;
+    height: 1rem;
     width: 100%;
   }
   .btns {
@@ -344,7 +374,7 @@ export default {
     left: 0;
     bottom: 0;
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 0.2rem;
   }
   .answer {
     position: absolute;

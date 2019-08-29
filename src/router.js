@@ -5,7 +5,7 @@ import Home from "./views/Home.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: "hash",
+  mode: process.env.NODE_ENV === "development" ? "history" : "hash",
   base: process.env.BASE_URL,
   routes: [
     {
@@ -20,10 +20,26 @@ export default new Router({
         import(/* webpackChunkName: "english" */ "./views/English.vue")
     },
     {
+      path: "/english-mobile",
+      name: "english-mobile",
+      component: () =>
+        import(
+          /* webpackChunkName: "english-mobile" */ "./views/EnglishMobile.vue"
+        )
+    },
+    {
       path: "/computer",
       name: "computer",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Computer.vue")
+        import(/* webpackChunkName: "computer" */ "./views/Computer.vue")
+    },
+    {
+      path: "/computer-mobile",
+      name: "computer-mobile",
+      component: () =>
+        import(
+          /* webpackChunkName: "computer-mobile" */ "./views/ComputerMobile.vue"
+        )
     }
   ]
 });
