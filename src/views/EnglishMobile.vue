@@ -219,7 +219,7 @@ export default {
       document.documentElement.clientWidth;
     let p = w / 750;
     if (p > 1) {
-      this.router.replace("/english");
+      this.$router.replace("/english");
     }
     p = p > 1 ? 1 : p < 0.427 ? 0.427 : p;
     document.getElementsByTagName("html")[0].style.fontSize = p * 100 + "px";

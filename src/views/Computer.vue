@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div class="score" v-show="submit">{{ score }} 分</div>
+    <el-page-header @back="$router.push('/')" content="计算机" />
     <div class="dx">
       <dl v-for="(item, i) in dxlist" :key="i">
         <div class="question">
@@ -98,6 +99,9 @@ export default {
   width: 1200px;
   margin: 0 auto;
   text-align: left;
+  .el-page-header {
+    padding: 10px 0;
+  }
   .score {
     z-index: 9;
     position: fixed;

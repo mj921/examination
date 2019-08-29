@@ -97,7 +97,7 @@ export default {
       document.documentElement.clientWidth;
     let p = w / 750;
     if (p > 1) {
-      this.router.replace("/computer");
+      this.$router.replace("/computer");
     }
     p = p > 1 ? 1 : p < 0.427 ? 0.427 : p;
     document.getElementsByTagName("html")[0].style.fontSize = p * 100 + "px";
