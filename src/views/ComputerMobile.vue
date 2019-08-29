@@ -64,7 +64,7 @@ export default {
     getDanXuan() {
       const arr = [...DanXuan];
       this.dxlist = [];
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 50; i++) {
         const ind = ~~(Math.random() * arr.length);
         this.dxlist.push({ ...arr[ind], xx: "" });
         arr.splice(ind, 1);
