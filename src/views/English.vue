@@ -205,7 +205,7 @@ export default {
       document.body.clientWidth ||
       document.documentElement.clientWidth;
     if (w < 750) {
-      this.$router.push("/english-mobile");
+      this.$router.replace("/english-mobile");
     }
   },
   created() {

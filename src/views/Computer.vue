@@ -79,6 +79,15 @@ export default {
       this.getDanXuan();
     }
   },
+  mounted() {
+    const w =
+      window.innerWidth ||
+      document.body.clientWidth ||
+      document.documentElement.clientWidth;
+    if (w < 750) {
+      this.$router.replace("/computer-mobile");
+    }
+  },
   created() {
     this.getDanXuan();
   }
