@@ -148,7 +148,7 @@ export default {
     getYueDu() {
       const arr = [...YueDu];
       this.ydlist = [];
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 4; i++) {
         const ind = ~~(Math.random() * arr.length);
         this.ydlist.push({
           text: arr[ind].text,
@@ -160,7 +160,7 @@ export default {
     getWanXing() {
       const arr = [...WanXing];
       this.wxlist = [];
-      for (let i = 0; i < 1; i++) {
+      for (let i = 0; i < 2; i++) {
         const ind = ~~(Math.random() * arr.length);
         this.wxlist.push({
           text: arr[ind].text,
