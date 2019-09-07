@@ -1,14 +1,7 @@
 <template>
   <div class="home">
-    <van-nav-bar
-      title="计算机"
-      left-arrow
-      @click-left="$router.push('/mobile')"
-      fixed
-      style="border-bottom: 1px solid #efefef"
-    />
     <div class="score" v-show="submit">{{ score }} 分</div>
-    <div style="width: 100%;height: 50px;"></div>
+    <el-page-header @back="$router.push('/')" content="计算机" />
     <div class="dx">
       <dl v-for="(item, i) in dxlist" :key="i">
         <div class="question">
@@ -28,42 +21,43 @@
           </span>
         </div>
         <div class="options">
-          <van-radio-group v-model="item.xx">
-            <van-radio
+          <el-radio-group v-model="item.xx">
+            <el-radio
               v-for="(jtem, j) in item.options"
               :key="jtem"
-              :name="A_Z[j]"
-              >{{ A_Z[j] }}.{{ jtem }}</van-radio
+              :label="A_Z[j]"
+              >{{ A_Z[j] }}.{{ jtem }}</el-radio
             >
-          </van-radio-group>
+          </el-radio-group>
         </div>
       </dl>
     </div>
-    <div style="height: 50px;widht: 100%;"></div>
-    <van-goods-action>
-      <van-goods-action-button type="info" @click="submitFn" text="提交" />
-      <van-goods-action-button type="danger" @click="reset" text="重来" />
-    </van-goods-action>
+    <div class="btns-bg"></div>
+    <div class="btns">
+      <el-button type="primary" @click="submitFn">提交</el-button>
+      <el-button type="primary" @click="reset">重来</el-button>
+    </div>
+    <el-backtop></el-backtop>
   </div>
 </template>
 
 <script>
-import DanXuanNew from "../data/computer/DanXuanNew";
-import DanXuan from "../data/computer/DanXuan";
+import DanXuan from "../data/computer/DanXuanNew";
 export default {
-  name: "computer-mobile-new",
+  name: "english",
   data() {
     return {
       dxlist: [],
+      wxlist: [],
+      ydlist: [],
       A_Z: ["A", "B", "C", "D", "E", "F"],
       submit: false,
-      score: 0,
-      meta: null
+      score: 0
     };
   },
   methods: {
     getDanXuan() {
-      const arr = [...DanXuan, ...DanXuanNew];
+      const arr = [...DanXuan];
       this.dxlist = [];
       for (let i = 0; i < 50; i++) {
         const ind = ~~(Math.random() * arr.length);
@@ -87,24 +81,13 @@ export default {
     }
   },
   mounted() {
-    this.m = document.createElement("meta");
-    this.m.name = "viewport";
-    this.m.content =
-      "user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover";
-    document.getElementsByTagName("head")[0].appendChild(this.m);
     const w =
       window.innerWidth ||
       document.body.clientWidth ||
       document.documentElement.clientWidth;
-    let p = w / 750;
-    if (p > 1) {
-      this.$router.replace("/computer-all");
+    if (w < 750) {
+      this.$router.replace("/computer-mobile-new");
     }
-    p = p > 1 ? 1 : p < 0.427 ? 0.427 : p;
-    document.getElementsByTagName("html")[0].style.fontSize = p * 100 + "px";
-  },
-  beforeDestroy() {
-    document.getElementsByTagName("head")[0].removeChild(this.m);
   },
   created() {
     this.getDanXuan();
@@ -113,53 +96,49 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
-  width: 7.5rem;
+  width: 1200px;
   margin: 0 auto;
   text-align: left;
+  .el-page-header {
+    padding: 10px 0;
+  }
   .score {
     z-index: 9;
     position: fixed;
-    font-size: 0.64rem;
-    line-height: 0.8rem;
+    font-size: 36px;
+    line-height: 60px;
     color: red;
-    right: 0.1rem;
-  }
-  .question .text {
-    font-weight: bold;
-  }
-  .van-radio {
-    font-size: 0.32rem;
-    margin-bottom: 0.1rem;
+    left: 50%;
+    margin-left: 500px;
   }
   .dx {
     dl {
-      margin-bottom: 0.4rem;
+      margin-bottom: 20px;
       .question {
-        font-size: 0.32rem;
-        line-height: 0.4rem;
-        margin-bottom: 0.2rem;
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 10px;
         overflow: hidden;
         position: relative;
         .no {
           float: left;
           vertical-align: top;
-          width: 0.8rem;
-          padding-right: 0.1rem;
+          width: 40px;
+          padding-right: 5px;
           text-align: right;
         }
         .text {
           float: left;
-          max-width: 6.5rem;
+          max-width: 1145px;
         }
       }
       .options {
-        padding-left: 0.7rem;
-        padding-right: 0.1rem;
+        padding-left: 35px;
       }
     }
   }
   .btns-bg {
-    height: 1rem;
+    height: 50px;
     width: 100%;
   }
   .btns {
@@ -168,7 +147,7 @@ export default {
     left: 0;
     bottom: 0;
     text-align: center;
-    padding-bottom: 0.2rem;
+    padding-bottom: 10px;
   }
   .answer {
     position: absolute;

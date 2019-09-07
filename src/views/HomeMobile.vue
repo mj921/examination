@@ -17,7 +17,24 @@
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+  mounted() {
+    this.m = document.createElement("meta");
+    this.m.name = "viewport";
+    this.m.content =
+      "user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover";
+    document.getElementsByTagName("head")[0].appendChild(this.m);
+    const w =
+      window.innerWidth ||
+      document.body.clientWidth ||
+      document.documentElement.clientWidth;
+    let p = w / 750;
+    if (p > 1) {
+      this.$router.replace("/");
+    }
+    p = p > 1 ? 1 : p < 0.427 ? 0.427 : p;
+    document.getElementsByTagName("html")[0].style.fontSize = p * 100 + "px";
+  }
 };
 </script>
 <style lang="less" scoped>

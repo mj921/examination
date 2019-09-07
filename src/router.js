@@ -40,6 +40,18 @@ export default new Router({
         import(/* webpackChunkName: "computer" */ "./views/Computer.vue")
     },
     {
+      path: "/computer-new",
+      name: "computer-new",
+      component: () =>
+        import(/* webpackChunkName: "computer-new" */ "./views/ComputerNew.vue")
+    },
+    {
+      path: "/computer-all",
+      name: "computer-all",
+      component: () =>
+        import(/* webpackChunkName: "computer-all" */ "./views/ComputerAll.vue")
+    },
+    {
       path: "/computer-mobile",
       name: "computer-mobile",
       component: () =>
