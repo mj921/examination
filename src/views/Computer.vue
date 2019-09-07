@@ -146,8 +146,12 @@ export default {
     width: 100%;
     left: 0;
     bottom: 0;
+    height: 50px;
     text-align: center;
     padding-bottom: 10px;
+    .el-button {
+      vertical-align: top;
+    }
   }
   .answer {
     position: absolute;

@@ -149,6 +149,10 @@ export default {
     bottom: 0;
     text-align: center;
     padding-bottom: 10px;
+    height: 50px;
+    .el-button {
+      vertical-align: top;
+    }
   }
   .answer {
     position: absolute;
