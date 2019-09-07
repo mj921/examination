@@ -48,9 +48,10 @@
 </template>
 
 <script>
+import DanXuanNew from "../data/computer/DanXuanNew";
 import DanXuan from "../data/computer/DanXuan";
 export default {
-  name: "computer-mobile",
+  name: "computer-mobile-new",
   data() {
     return {
       dxlist: [],
@@ -62,7 +63,7 @@ export default {
   },
   methods: {
     getDanXuan() {
-      const arr = [...DanXuan];
+      const arr = [...DanXuan, ...DanXuanNew];
       this.dxlist = [];
       for (let i = 0; i < 50; i++) {
         const ind = ~~(Math.random() * arr.length);

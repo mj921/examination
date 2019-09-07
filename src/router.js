@@ -14,6 +14,12 @@ export default new Router({
       component: Home
     },
     {
+      path: "/mobile",
+      name: "home-mobile",
+      component: () =>
+        import(/* webpackChunkName: "mobile" */ "./views/HomeMobile.vue")
+    },
+    {
       path: "/english",
       name: "english",
       component: () =>
@@ -39,6 +45,22 @@ export default new Router({
       component: () =>
         import(
           /* webpackChunkName: "computer-mobile" */ "./views/ComputerMobile.vue"
+        )
+    },
+    {
+      path: "/computer-mobile-new",
+      name: "computer-mobile-new",
+      component: () =>
+        import(
+          /* webpackChunkName: "computer-mobile-new" */ "./views/ComputerMobileNew.vue"
+        )
+    },
+    {
+      path: "/computer-mobile-all",
+      name: "computer-mobile-all",
+      component: () =>
+        import(
+          /* webpackChunkName: "computer-mobile-all" */ "./views/ComputerMobileAll.vue"
         )
     }
   ]

@@ -48,9 +48,9 @@
 </template>
 
 <script>
-import DanXuan from "../data/computer/DanXuan";
+import DanXuan from "../data/computer/DanXuanNew";
 export default {
-  name: "computer-mobile",
+  name: "computer-mobile-new",
   data() {
     return {
       dxlist: [],

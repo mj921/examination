@@ -6,6 +6,12 @@
     <router-link to="/computer-mobile">
       <el-tag type="primary">计算机</el-tag>
     </router-link>
+    <router-link to="/computer-mobile-new">
+      <el-tag type="primary">计算机(新)</el-tag>
+    </router-link>
+    <router-link to="/computer-mobile-all">
+      <el-tag type="primary">计算机(混合)</el-tag>
+    </router-link>
   </div>
 </template>
 

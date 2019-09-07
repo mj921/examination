@@ -3,7 +3,7 @@
     <van-nav-bar
       title="英语"
       left-arrow
-      @click-left="$router.push('/')"
+      @click-left="$router.push('/mobile')"
       fixed
       style="border-bottom: 1px solid #efefef"
     />
