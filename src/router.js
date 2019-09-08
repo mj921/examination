@@ -34,6 +34,14 @@ export default new Router({
         )
     },
     {
+      path: "/english-mobile-new",
+      name: "english-mobile-new",
+      component: () =>
+        import(
+          /* webpackChunkName: "english-mobile-new" */ "./views/EnglishMobileNew.vue"
+        )
+    },
+    {
       path: "/computer",
       name: "computer",
       component: () =>

@@ -3,6 +3,9 @@
     <router-link to="/english-mobile">
       <el-tag type="primary">英语</el-tag>
     </router-link>
+    <router-link to="/english-mobile-new">
+      <el-tag type="primary">英语(新)</el-tag>
+    </router-link>
     <router-link to="/computer-mobile">
       <el-tag type="primary">计算机</el-tag>
     </router-link>

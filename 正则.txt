@@ -30,5 +30,22 @@
 
 
 英语 新
+阅读理解 单选
+Passage\s+\d+\s*\n([\u4e00-\u9fa5()a-zA-Z0-9\s'"\.,_\n?!;:\$-=\/─]+)\n1、\s*([^\n]+)\n\s*A.\s*([^\n]+)\n\s*B.\s*([^\n]+)\n\s*C.\s*([^\n]+)\n\s*D.\s*([^\n]+)\n2、\s*([^\n]+)\n\s*A.\s*([^\n]+)\n\s*B.\s*([^\n]+)\n\s*C.\s*([^\n]+)\n\s*D.\s*([^\n]+)\n3、\s*([^\n]+)\n\s*A.\s*([^\n]+)\n\s*B.\s*([^\n]+)\n\s*C.\s*([^\n]+)\n\s*D.\s*([^\n]+)\n4、\s*([^\n]+)\n\s*A.\s*([^\n]+)\n\s*B.\s*([^\n]+)\n\s*C.\s*([^\n]+)\n\s*D.\s*([^\n]+)\n5、\s*([^\n]+)\n\s*A.\s*([^\n]+)\n\s*B.\s*([^\n]+)\n\s*C.\s*([^\n]+)\n\s*D.\s*([^\n]+)\nKEY:\s*([A-D])([A-D])([A-D])([A-D])([A-D])
+{text: `$1`,questions:[{question:`$2`,options:["$3","$4","$5","$6"],answer:"$27"},{question:`$7`,options:["$8","$9","$10","$11"],answer:"$28"},{question:`$12`,options:["$13","$14","$15","$16"],answer:"$29"},{question:`$17`,options:["$18","$19","$20","$21"],answer:"$30"},{question:`$22`,options:["$23","$24","$25","$26"],answer:"$31"}]},
+
+
 阅读理解 对错
-Passage\s*\d+\s*\n([\u4e00-\u9fa5()a-zA-Z0-9\s'"\.,_\n?!;:\$-=\/─]+)\n?\s*翻译：([\u4e00-\u9fa5，。“”‘’：！\n]+)\n1.\s([^\n]*)\nA.(T)\s*\nB.(F)\s*\n\n2.\s([^\n]*)\nA.(T)\s*\nB.(F)\s*\n\n3.\s([^\n]*)\nA.(T)\s*\nB.(F)\s*\n\n4.\s([^\n]*)\nA.(T)\s*\nB.(F)\s*\n\n5.\s([^\n]*)\nA.(T)\s*\nB.(F)\s*\nKEY:([A|B])([A|B])([A|B])([A|B])([A|B])
+
+Passage\s+\d+\s*\n([é\u4e00-\u9fa5()a-zA-Z0-9\s'"\.,_\n?!;:\$-=\/─]+)\n1、\s*([^\n]+)\n[^\n]+\n2、\s*([^\n]+)\n[^\n]+\n3、\s*([^\n]+)\n[^\n]+\n4、\s*([^\n]+)\n[^\n]+\n5、\s*([^\n]+)\n[^\n]+\nKEY:\s*([A-B])([A-B])([A-B])([A-B])([A-B])
+{text: `$1`,questions:[{question:`$2`,options:["T","F"],answer:"$7"},{question:`$3`,options:["T","F"],answer:"$8"},{question:`$4`,options:["T","F"],answer:"$9"},{question:`$5`,options:["T","F"],answer:"$10"},{question:`$6`,options:["T","F"],answer:"$11"}]},
+
+
+完形填空
+Passage\s+\d+\s*\n([\u4e00-\u9fa5()a-zA-Z0-9\s'"\.,_\n?!;:\$-=\/─\%]+)\n\s*A、\s*([^\n]+)\n\s*B、\s*([^\n]+)\n\s*C、\s*([^\n]+)\n\s*D、\s*([^\n]+)\n\s*E、\s*([^\n]+)\n\s*KEY:\s*([A-E])([A-E])([A-E])([A-E])([A-E])
+{text: `$1`,questions:[{options:["$2","$3","$4","$5","$6"],answer:"$7"},{options:["$2","$3","$4","$5","$6"],answer:"$8"},{options:["$2","$3","$4","$5","$6"],answer:"$9"},{options:["$2","$3","$4","$5","$6"],answer:"$10"},{options:["$2","$3","$4","$5","$6"],answer:"$11"}]},
+
+
+单选 交际
+\d+、([^\n]*(?:\n[-|－][^\n]*)*)\n\s*A.([^\n]*)\s*\n\s*B.([^\n]*)\s*\n\s*C.([^\n]*)\s*\n\s*D.([^\n]*)\n
+{question:`$1`,options:[`$2`,`$3`,`$4`,`$5`],answer:"$6"},
